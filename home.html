@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Spot Finder - [Page Name]</title>
+    <title>Study Spot Finder - Home</title>
     <link rel="stylesheet" href="css/styles.css">
     <!-- Include Bootstrap CDN if you're using Bootstrap -->
 </head>
@@ -24,16 +24,19 @@
             <h1>Welcome to Ashesi Classroom Finder</h1>
             <p>Welcome to your go-to resource for finding the perfect study spot on campus. Say goodbye to wandering around in search of an empty classroom. Now, you can easily see real-time availability of classrooms, ensuring you find a peaceful place to focus, study, and excel.</p>
         </section>
-        <div class="search-container">
-            <input type="text" placeholder="Search for a classroom..." class="search-input">
-            <button type="submit" class="search-button">Search</button>
-        </div>
-        
+        <section class="search-container">
+            <form id="searchForm">
+                <input type="text" placeholder="Search for a classroom..." id="searchInput">
+                <button type="submit">Search</button>
+            </form>
+        </section>
+        <!-- Placeholder for displaying search results -->
+        <div id="searchResults"></div>
     </main>
-    
 
     <footer>
-        <p>&copy; 2024 © Elikem Hamenoo , Edem K. Anagbah , Madiba Hudson-Quansah.</p>
+        <p>&copy; 2024 © Elikem Hamenoo, Edem K. Anagbah, Madiba Hudson-Quansah.</p>
     </footer>
+    <script src="js/script.js"></script>
 </body>
 </html>
