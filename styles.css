@@ -1,0 +1,122 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4; /* Light grey background, adjust as needed */
+}
+
+header {
+    background-color: #ffffff; /* White background for the nav */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    display: inline;
+    padding: 0 20px; /* Adjust spacing around navigation links */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333; /* Dark text for contrast */
+    font-weight: 500;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #ffffff; /* Matching the nav */
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1); /* Shadow for depth, at the top */
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
+}
+
+footer p {
+    color: #666; /* Slightly lighter text color */
+}
+
+/* Styles for the main content area */
+main {
+    padding: 60px 10% 40px; /* Adjust top padding considering fixed header */
+    min-height: 100vh; /* Ensures footer is at the bottom of the page */
+    margin-bottom: 40px; /* Space for the fixed footer */
+}
+
+/* Specific page styling */
+.intro, .steps, .team-intro, .search-container, .team-members {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff; /* White background for content areas */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Shadow for depth */
+    border-radius: 5px; /* Slightly rounded corners for a softer look */
+}
+
+.team-members .member {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+
+.team-photo {
+    width: 100px; /* Adjust based on your actual images */
+    height: 100px;
+    border-radius: 50%; /* Circle frame */
+    margin-bottom: 10px;
+}
+
+.search-container input[type="text"], .search-container button {
+    padding: 10px;
+    margin-top: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-container button {
+    background-color: #007bff; /* Bootstrap primary blue, adjust as needed */
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.search-container button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+.home {
+    background: url('assets/images/Ashesis_Archer_Cornfield_Courtyard.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.how-it-works {
+    background: url('assets/images/Screenshot_2024-03-10_041540.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.meet-the-team {
+    background: url('assets/images/Screenshot_2024-03-10_041737.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+
