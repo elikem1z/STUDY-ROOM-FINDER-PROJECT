@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><strong>STUDY SPOT FINDER - [Page Name]</strong></title>
+    <title>Study Spot Finder - [Page Name]</title>
     <link rel="stylesheet" href="./css/styles.css" />
     <!-- Include Bootstrap CDN if you're using Bootstrap -->
   </head>
   <body>
     <header>
       <nav>
-        <div class="logo"><strong>STUDY SPOT FINDER</strong></div>
+        <div class="logo">Study Spot Finder</div>
         <ul class="nav-links">
           <li><a href="./index.html">Home</a></li>
           <li><a href="./how-it-works.html">How it works</a></li>
@@ -23,7 +23,7 @@
       <section class="intro">
         <h1>Welcome to Ashesi Classroom Finder</h1>
         <p>
-          Welcome to your go-to resource for finding the perfect study spot on
+          Welcome to your go-to resource for finding the perfect study spot on 
           campus. Say goodbye to wandering around in search of an empty
           classroom. Now, you can easily see real-time availability of
           classrooms, ensuring you find a peaceful place to focus, study, and
@@ -31,13 +31,34 @@
         </p>
       </section>
       <div class="search-container">
-        <input
-          type="text"
-          placeholder="Search for a classroom..."
-          class="search-input"
-        />
-        <button type="submit" class="search-button">Search</button>
-      </div>
+    <label for="location-select">Choose a location:</label>
+
+<select name="locations" id="location-select">
+  <option value="">--Please choose an option--</option>
+  <option value="apt_hall_216">Apt Hall 216</option>
+  <option value="norton_motulsky_207b">Norton-Motulsky 207B</option>
+  <option value="norton_motulsky_207a">Norton-Motulsky 207A</option>
+  <option value="apt_hall_217">Apt Hall 217</option>
+  <option value="nutor_hall_100">Nutor Hall 100</option>
+  <option value="nutor_hall_115">Nutor Hall 115</option>
+  <option value="radichel_mpr">Radichel MPR</option>
+  <option value="nutor_hall_216">Nutor Hall 216</option>
+  <option value="jackson_hall_116">Jackson Hall 116</option>
+  <option value="jackson_lab_222">Jackson Lab 222</option>
+  <option value="jackson_lab_221">Jackson Lab 221</option>
+  <option value="jackson_hall_115">Jackson Hall 115</option>
+  <option value="fab_lab_303">Fab Lab 303</option>
+  <option value="fab_lab_203">Fab Lab 203</option>
+  <option value="databank_foundation_hall_218">Databank Foundation Hall 218</option>
+  <option value="d_lab_102">D-Lab 102</option>
+  <option value="bio_lab">Bio Lab</option>
+  <option value="science_lab">Science Lab</option>
+  <option value="ee_lab">EE lab</option>
+  <option value="fab_lab_103">Fab Lab 103</option>
+</select>
+
+    <button type="submit" class="search-button">Search</button>
+</div>
     </main>
 
     <footer>
