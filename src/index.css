@@ -3,16 +3,27 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.5s ease; /* Add a global transition for all properties */
 }
 
 body {
-    font-family: "Arial", sans-serif;
-    background-color: #f4f4f4; /* Light grey background, adjust as needed */
+    font-family: "Montserrat", sans-serif;
+    background-color: #2b2626; /* Light grey background, adjust as needed */
+    width: 100%;
+    height: 100%;
+}
+
+.root {
+    height: 100%;
+    width: 100%;
 }
 
 header {
-    background-color: #ffffff; /* White background for the nav */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    color: #f4f4f4;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4) ffff; /* White background for the nav */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0); /* Subtle shadow for depth */
     position: fixed;
     width: 100%;
     z-index: 1000;
@@ -36,14 +47,14 @@ nav {
 
 .nav-links a {
     text-decoration: none;
-    color: #333; /* Dark text for contrast */
+    color: #dadada; /* Dark text for contrast */
     font-weight: 500;
 }
 
 footer {
     text-align: center;
     padding: 20px 0;
-    background-color: #ffffff; /* Matching the nav */
+    background-color: rgba(0, 0, 0, 0.4); /* Matching the nav */
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Shadow for depth, at the top */
     position: fixed;
     width: 100%;
@@ -52,40 +63,69 @@ footer {
 }
 
 footer p {
-    color: #666; /* Slightly lighter text color */
+    color: #f8f5f5; /* Slightly lighter text color */
 }
 
 /* Styles for the main content area */
 main {
-    padding: 60px 10% 40px; /* Adjust top padding considering fixed header */
+    color: #f8f5f5; /* Slightly lighter text color */
+    padding: 60px 22% 80px; /* Adjust top padding considering fixed header */
     min-height: 100vh; /* Ensures footer is at the bottom of the page */
     margin-bottom: 40px; /* Space for the fixed footer */
 }
 
 /* Specific page styling */
 .intro,
-.steps,
 .team-intro,
 .search-container,
 .team-members {
     margin-top: 20px;
     padding: 20px;
-    background-color: #fff; /* White background for content areas */
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.1
+    ); /* White background for content areas */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-    border-radius: 5px; /* Slightly rounded corners for a softer look */
+    border-radius: 20px; /* Slightly rounded corners for a softer look */
 }
-
+.steps {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 100px;
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.3
+    ); /* White background for content areas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    border-radius: 20px; /* Slightly rounded corners for a softer look */
+}
+.steps h1 {
+    text-decoration-color: crimson;
+}
+.steps ol {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    border-radius: 20px; /* Slightly rounded corners for a softer look */
+}
 .team-members .member {
     display: inline-block;
-    margin: 10px;
+    margin: 40px;
     text-align: center;
 }
 
 .team-photo {
-    width: 100px; /* Adjust based on your actual images */
-    height: 100px;
+    width: 120px; /* Adjust based on your actual images */
+    height: 120px;
     border-radius: 50%; /* Circle frame */
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .search-container input[type="text"],
@@ -112,14 +152,73 @@ main {
     background: url("../assets/images/Ashesi's_Archer_Cornfield_Courtyard.jpg")
         no-repeat center center fixed;
     background-size: cover;
+    position: relative;
+}
+
+/* The overlay should be a separate rule */
+.home::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Black with 40% opacity */
+    z-index: 1; /* Place behind the image */
+}
+.home h1,
+.home p,
+.search-container {
+    color: white; /* Ensure text is visible on the dark shade */
+    position: relative; /* Allow layering above the overlay */
+    z-index: 2; /* Make sure text is on top */
+    text-align: center; /* Optional */
 }
 
 .how-it-works {
     background: url("../assets/images/Screenshot\ 2024-03-10\ 041540.png")
         no-repeat center center fixed;
     background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* The overlay should be a separate rule */
+.how-it-works::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Black with 40% opacity */
+    z-index: 1; /* Place behind the image */
+    transition: opacity 0.5s ease-in-out; /* Add transition for opacity */
+}
+.how-it-works h1 {
+    color: white; /* Ensure text is visible on the dark shade */
+    position: relative; /* Allow layering above the overlay */
+    z-index: 2; /* Make sure text is on top */
+    text-align: center; /* Optional */
+}
+.how-it-works ol strong {
+    line-height: 5;
+    text-shadow: #1f1b1b;
+    color: rgb(240, 15, 15); /* Ensure text is visible on the dark shade */
+    position: relative; /* Allow layering above the overlay */
+    z-index: 2; /* Make sure text is on top */
+    text-align: center; /* Optional */
 }
 
+.how-it-works ol p {
+    line-height: 2;
+    color: white; /* Ensure text is visible on the dark shade */
+    position: relative; /* Allow layering above the overlay */
+    z-index: 2; /* Make sure text is on top */
+    text-align: center; /* Optional */
+}
 .meet-the-team {
     background: url("../assets/images/Screenshot\ 2024-03-10\ 041737.png")
         no-repeat center center fixed;
