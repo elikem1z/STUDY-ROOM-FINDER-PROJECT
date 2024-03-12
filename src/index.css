@@ -188,15 +188,21 @@ main {
     background-color: #0056b3; /* Darker blue on hover */
 }
 
-.home {
+.home,
+.status-page {
     background: url("../assets/images/Ashesi's_Archer_Cornfield_Courtyard.jpg")
         no-repeat center center fixed;
     background-size: cover;
     position: relative;
 }
 
+.status {
+    z-index: 2;
+}
+
 /* The overlay should be a separate rule */
-.home::after {
+.home::after,
+.status-page::after {
     content: "";
     position: absolute;
     top: 0;

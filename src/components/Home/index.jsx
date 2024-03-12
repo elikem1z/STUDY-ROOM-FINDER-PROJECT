@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
     API_BASE,
@@ -8,16 +9,24 @@ import {
 } from "../constants";
 import Select from "../Select";
 
-const Home = () => {
-    const [locations, setLocations] = useState([]);
-    const [availableLocations, setAvailableLocations] = useState([]);
-    const [selectedLocation, setSelectedLocaction] = useState(locations[0]);
+const Home = ({
+    locationState,
+    availableLocationsState,
+    selectedLocationState,
+}) => {
+    const { locations, setLocations } = locationState;
+    const { availableLocations, setAvailableLocations } =
+        availableLocationsState;
+    const { selectedLocation, setSelectedLocaction } = selectedLocationState;
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios
             .get(`${API_BASE}${GET_LOCATIONS}`)
             .then((res) => {
                 setLocations(res.data);
+                setSelectedLocaction(res.data[0]);
             })
             .catch((err) => {
                 console.log(err);
@@ -47,16 +56,8 @@ const Home = () => {
     };
 
     const onSearch = (e) => {
-        axios
-            .post(`${API_BASE}${POST_COURSES_RIGHT_NOW}`, {
-                location: selectedLocation,
-            })
-            .then((res) => {
-                console.log(res.data);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+        e.preventDefault();
+        navigate("/status");
     };
 
     return (
