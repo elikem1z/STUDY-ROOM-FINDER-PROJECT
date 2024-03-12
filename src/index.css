@@ -29,6 +29,40 @@ header {
     z-index: 1000;
 }
 
+.available {
+    z-index: 2; /* Make sure text is on top */
+    position: relative;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+.available h2 {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 10px;
+}
+
+.available-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.location {
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -71,7 +105,12 @@ main {
     color: #f8f5f5; /* Slightly lighter text color */
     padding: 60px 22% 80px; /* Adjust top padding considering fixed header */
     min-height: 100vh; /* Ensures footer is at the bottom of the page */
-    margin-bottom: 40px; /* Space for the fixed footer */
+}
+
+.search-container > select {
+    margin-right: 15px;
+    font-size: 16px;
+    height: 30%;
 }
 
 /* Specific page styling */
@@ -131,7 +170,6 @@ main {
 .search-container select,
 .search-container button {
     padding: 10px;
-    margin-top: 20px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -142,6 +180,8 @@ main {
     color: white;
     cursor: pointer;
     border: none;
+    height: 30%;
+    font-size: 16px;
 }
 
 .search-container button:hover {

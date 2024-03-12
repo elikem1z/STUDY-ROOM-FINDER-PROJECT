@@ -85,16 +85,21 @@ const Home = () => {
                     Search
                 </button>
             </div>
-            <div className="available-grid">
-                {availableLocations.length > 0 ? (
-                    availableLocations.map((location, key) => (
-                        <div key={key} className="location">
-                            <h3>{location}</h3>
-                        </div>
-                    ))
-                ) : (
-                    <p>No available locations</p>
-                )}
+            <div>
+                <div className="available">
+                    <h2>Available Now!</h2>
+                    <div className="available-grid">
+                        {availableLocations.length > 0 ? (
+                            availableLocations.map((location, key) => (
+                                <div key={key} className="location">
+                                    <h3>{location}</h3>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No available locations</p>
+                        )}
+                    </div>
+                </div>
             </div>
         </main>
     );
