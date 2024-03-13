@@ -23,15 +23,6 @@ const Home = ({
 
     useEffect(() => {
         axios
-            .get(`${API_BASE}${GET_LOCATIONS}`)
-            .then((res) => {
-                setLocations(res.data);
-                setSelectedLocaction(res.data[0]);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        axios
             .get(`${API_BASE}${GET_AVAIABLE_LOCATIONS}`)
             .then((res) => {
                 setAvailableLocations(res.data);
@@ -57,6 +48,10 @@ const Home = ({
 
     const onSearch = (e) => {
         e.preventDefault();
+        if (selectedLocation === "") {
+            console.log("Please select a location");
+            return;
+        }
         navigate("/status");
     };
 
@@ -70,6 +65,9 @@ const Home = ({
                     an empty classroom. Now, you can easily see real-time
                     availability of classrooms, ensuring you find a peaceful
                     place to focus, study, and excel.
+                </p>
+                <p className="disclaimer">
+                    DISCLAIMER: Some locations maybe booked beforehand
                 </p>
             </section>
             <div className="search-container">
@@ -88,7 +86,7 @@ const Home = ({
             </div>
             <div>
                 <div className="available">
-                    <h2>Available Now!</h2>
+                    <h2 className="available-text">Classes Available Now</h2>
                     <div className="available-grid">
                         {availableLocations.length > 0 ? (
                             availableLocations.map((location, key) => (

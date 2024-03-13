@@ -29,6 +29,34 @@ header {
     z-index: 1000;
 }
 
+.status-container {
+    max-width: 600px;
+    margin: 50px auto;
+    /* background-color: #fff; */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+}
+
+.status-container p {
+    position: relative; /* Allow layering above the overlay */
+    z-index: 2; /* Make sure text is on top */
+    font-size: 16px;
+}
+
+/* h2 { */
+/*     color: #007bff; */
+/* } */
+
+p {
+    margin: 10px 0;
+}
+
+.status-message {
+    font-weight: bold;
+    color: #28a745;
+}
+
 .available {
     z-index: 2; /* Make sure text is on top */
     position: relative;
@@ -117,7 +145,8 @@ main {
 .intro,
 .team-intro,
 .search-container,
-.team-members {
+.team-members,
+.status {
     margin-top: 20px;
     padding: 20px;
     background-color: rgba(
@@ -214,11 +243,37 @@ main {
 }
 .home h1,
 .home p,
-.search-container {
+.search-container,
+.status h1 {
     color: white; /* Ensure text is visible on the dark shade */
     position: relative; /* Allow layering above the overlay */
     z-index: 2; /* Make sure text is on top */
     text-align: center; /* Optional */
+}
+
+.indicator,
+.course-name {
+    color: white; /* Ensure text is visible on the dark shade */
+    position: relative; /* Allow layering above the overlay */
+    z-index: 2; /* Make sure text is on top */
+    text-align: center;
+}
+
+.disclaimer {
+    color: red !important;
+    font-weight: bold;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+.indicator,
+.available-text {
+    color: #28d841;
+}
+
+.indicator {
+    font-size: 20px;
+    margin-top: 5vh;
 }
 
 .how-it-works {
@@ -269,4 +324,16 @@ main {
     background: url("../assets/images/Screenshot\ 2024-03-10\ 041737.png")
         no-repeat center center fixed;
     background-size: cover;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
