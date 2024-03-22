@@ -13,11 +13,13 @@ const Home = ({
     locationState,
     availableLocationsState,
     selectedLocationState,
+    errorState,
 }) => {
     const { locations, setLocations } = locationState;
     const { availableLocations, setAvailableLocations } =
         availableLocationsState;
     const { selectedLocation, setSelectedLocaction } = selectedLocationState;
+    const { error, setError } = errorState;
 
     const navigate = useNavigate();
 
@@ -28,7 +30,7 @@ const Home = ({
                 setAvailableLocations(res.data);
             })
             .catch((err) => {
-                console.error(err);
+                setError(err.message);
             });
         setInterval(() => {
             axios
@@ -37,7 +39,7 @@ const Home = ({
                     setAvailableLocations(res.data);
                 })
                 .catch((err) => {
-                    console.error(err);
+                    setError(err.message);
                 });
         }, 1800000);
     }, []);
@@ -52,7 +54,7 @@ const Home = ({
             console.log("Please select a location");
             return;
         }
-        navigate("/status");
+        if (error == null) navigate("/status");
     };
 
     return (
@@ -84,20 +86,18 @@ const Home = ({
                     Search
                 </button>
             </div>
-            <div>
-                <div className="available">
-                    <h2 className="available-text">Classes Available Now</h2>
-                    <div className="available-grid">
-                        {availableLocations.length > 0 ? (
-                            availableLocations.map((location, key) => (
-                                <div key={key} className="location">
-                                    <h3>{location}</h3>
-                                </div>
-                            ))
-                        ) : (
-                            <p>No available locations</p>
-                        )}
-                    </div>
+            <div className="available">
+                <h2 className="available-text">Classes Available Now</h2>
+                <div className="available-grid">
+                    {availableLocations.length > 0 ? (
+                        availableLocations.map((location, key) => (
+                            <div key={key} className="location">
+                                <h3>{location}</h3>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No available locations</p>
+                    )}
                 </div>
             </div>
         </main>

@@ -1,3 +1,6 @@
+import madiba from "../../../assets/images/madiba_pic.jpg";
+import edem from "../../../assets/images/edem_pic.jpg";
+import elikem from "../../../assets/images/elikem_pic.png";
 import React from "react";
 
 const MeetTeam = () => (
@@ -12,17 +15,13 @@ const MeetTeam = () => (
         </section>
         <section class="team-members">
             <div class="member">
-                <img
-                    src="./assets/images/edem pic.jpeg"
-                    alt="Edem K. Anagbah"
-                    class="team-photo"
-                />
+                <img src={edem} alt="Edem K. Anagbah" class="team-photo" />
                 <p>Edem K. Anagbah</p>
             </div>
 
             <div class="member">
                 <img
-                    src="./assets/images/madiba pic.jpeg"
+                    src={madiba}
                     alt="Madiba Hudson-Quansah"
                     class="team-photo"
                 />
@@ -30,11 +29,7 @@ const MeetTeam = () => (
             </div>
 
             <div class="member">
-                <img
-                    src="./assets/images/my pic.png"
-                    alt="Elikem Hamenoo"
-                    class="team-photo"
-                />
+                <img src={elikem} alt="Elikem Hamenoo" class="team-photo" />
                 <p>Elikem Hamenoo</p>
             </div>
         </section>

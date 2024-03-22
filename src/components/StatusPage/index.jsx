@@ -1,28 +1,77 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_BASE, POST_COURSES_RIGHT_NOW } from "../constants";
+import {
+    API_BASE,
+    POST_COURSES_RIGHT_NOW,
+    POST_GET_COURSES_TODAY,
+} from "../constants";
 
-const StatusPage = ({ location, courseState }) => {
+const StatusPage = ({ location, courseState, errorState }) => {
     const nav = useNavigate();
 
-    const { courses, setCourses } = courseState;
-    useEffect(() => {
-        if (!location) {
-            return nav("/");
-        }
-
+    const rightNow = () => {
+        const controller = new AbortController();
         axios
             .post(`${API_BASE}${POST_COURSES_RIGHT_NOW}`, {
+                signal: controller,
+                location: location,
+            })
+            .then((res) => {
+                setAvailable(res.data.length == 0);
+                setCourses(res.data);
+            })
+            .catch((err) => {
+                setError(err.message);
+            });
+
+        return controller;
+    };
+
+    const today = () => {
+        const controller = new AbortController();
+        axios
+            .post(`${API_BASE}${POST_GET_COURSES_TODAY}`, {
+                signal: controller,
                 location: location,
             })
             .then((res) => {
                 setCourses(res.data);
             })
             .catch((err) => {
-                console.error(err);
+                setError(err.message);
             });
+        return controller;
+    };
+
+    const { courses, setCourses } = courseState;
+    const { error, setError } = errorState;
+    const [buttonState, setButtonState] = useState(true);
+    const [available, setAvailable] = useState(false);
+
+    useEffect(() => {
+        if (!location) {
+            return nav("/");
+        }
+
+        const controller = rightNow();
+        return () => {
+            controller.abort();
+        };
     }, []);
+
+    useEffect(() => {
+        let controller = null;
+        if (buttonState) {
+            controller = rightNow();
+        } else {
+            controller = today();
+        }
+
+        return () => {
+            controller.abort();
+        };
+    }, [buttonState]);
 
     const convertTime = (time) => {
         const t = new Date(
@@ -39,18 +88,46 @@ const StatusPage = ({ location, courseState }) => {
         <main className="status-page">
             <section className="status">
                 <h1 className="location-name">{location}</h1>
+                <div className="state-buttons">
+                    <button
+                        disabled={buttonState}
+                        onClick={(e) => setButtonState(true)}
+                        className="state-button"
+                    >
+                        Right Now
+                    </button>
+                    <button
+                        disabled={!buttonState}
+                        onClick={(e) => setButtonState(false)}
+                        className="state-button"
+                    >
+                        Today
+                    </button>
+                </div>
+                <h2 className={available ? "indicator" : "status-indicator"}>
+                    {available
+                        ? "This location is available"
+                        : "A class is in session at this location"}
+                </h2>
                 {courses.length === 0 ? (
-                    <h2 className="indicator">This location is available</h2>
+                    <></>
                 ) : (
                     <div className="classes-display">
-                        <h2 className="indicator-red">
-                            A class is in session at this location
-                        </h2>
                         {courses.map((course, k) => (
                             <div className="status-container" key={k}>
                                 <h2 className="course-name">
                                     {course.courseCode}
                                 </h2>
+                                <p>
+                                    <span
+                                        style={{
+                                            fontWeight: "bold",
+                                        }}
+                                    >
+                                        Section
+                                    </span>
+                                    : {course.section}
+                                </p>
                                 <p>
                                     <span
                                         style={{

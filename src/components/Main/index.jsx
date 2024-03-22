@@ -14,8 +14,10 @@ const Main = () => {
     const [availableLocations, setAvailableLocations] = useState([]);
     const [selectedLocation, setSelectedLocaction] = useState("");
     const [courses, setCourses] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        console.log(import.meta.env.VITE_API_BASE);
         axios
             .get(`${API_BASE}${GET_LOCATIONS}`)
             .then((res) => {
@@ -26,6 +28,16 @@ const Main = () => {
                 console.log(err);
             });
     }, []);
+
+    useEffect(() => {
+        if (error != null) {
+            console.log({ error });
+            setTimeout(() => {
+                console.log("Clearning error state");
+                setError(null);
+            }, 30e3);
+        }
+    }, [error]);
 
     const locationState = {
         locations,
@@ -47,6 +59,11 @@ const Main = () => {
         setCourses,
     };
 
+    const errorState = {
+        error,
+        setError,
+    };
+
     return (
         <BrowserRouter>
             <Header />
@@ -59,22 +76,22 @@ const Main = () => {
                             locationState={locationState}
                             availableLocationsState={availableLocationsState}
                             selectedLocationState={selectedLocationState}
+                            errorState={errorState}
                         />
                     }
                 />
                 <Route path="/how-it-works" element={<HowItWorks />} />
-                <Route path="/meet-the-team" element={<MeetTeam />} />
                 <Route
                     path="/status"
                     element={
                         <StatusPage
+                            errorState={errorState}
                             courseState={courseState}
                             location={selectedLocation}
                         />
                     }
                 />
             </Routes>
-            <Footer />
         </BrowserRouter>
     );
 };
