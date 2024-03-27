@@ -9,7 +9,8 @@
 body {
     font-family: "Montserrat", sans-serif;
     background-color: #2b2626; /* Light grey background, adjust as needed */
-    width: 100vw;
+    width: 100%;
+    overflow-x: hidden;
     height: 100vh;
 }
 
@@ -283,6 +284,18 @@ main {
     flex-direction: column;
 }
 
+.back-button {
+    text-decoration: none;
+    z-index: 1000;
+    position: relative;
+}
+
+.back-button:hover,
+.state-button:hover {
+    background-color: #91c6ff;
+    cursor: pointer;
+}
+
 .state-buttons {
     display: flex;
     justify-content: space-between;
@@ -292,7 +305,8 @@ main {
     z-index: 1000;
 }
 
-.state-button {
+.state-button,
+.back-button {
     background-color: #007bff; /* Bootstrap primary blue, adjust as needed */
     color: white;
     border: none;
@@ -486,6 +500,10 @@ main {
     .state-button {
         /* margin: 0 1rem; */
         padding: 0.3rem 0.6rem;
+    }
+
+    .back-button {
+        padding: 0.2rem 0.4rem;
     }
 
     .intro,

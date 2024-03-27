@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import {
     API_BASE,
@@ -73,6 +73,12 @@ const StatusPage = ({ location, courseState, errorState }) => {
         };
     }, [buttonState]);
 
+    const convertTimeNum = (time) => {
+        return new Date(
+            new Date().toISOString().split("T")[0] + "T" + time,
+        ).getTime();
+    };
+
     const convertTime = (time) => {
         const t = new Date(
             new Date().toISOString().split("T")[0] + "T" + time,
@@ -87,7 +93,12 @@ const StatusPage = ({ location, courseState, errorState }) => {
     return (
         <main className="status-page">
             <section className="status">
-                <h1 className="location-name">{location}</h1>
+                <div>
+                    <Link className="back-button" to="/">
+                        Back
+                    </Link>
+                    <h1 className="location-name">{location}</h1>
+                </div>
                 <div className="state-buttons">
                     <button
                         disabled={buttonState}
@@ -113,43 +124,49 @@ const StatusPage = ({ location, courseState, errorState }) => {
                     <></>
                 ) : (
                     <div className="classes-display">
-                        {courses.map((course, k) => (
-                            <div className="status-container" key={k}>
-                                <h2 className="course-name">
-                                    {course.courseCode}
-                                </h2>
-                                <p>
-                                    <span
-                                        style={{
-                                            fontWeight: "bold",
-                                        }}
-                                    >
-                                        Section
-                                    </span>
-                                    : {course.section}
-                                </p>
-                                <p>
-                                    <span
-                                        style={{
-                                            fontWeight: "bold",
-                                        }}
-                                    >
-                                        Start Time
-                                    </span>
-                                    : {convertTime(course.startTime)}
-                                </p>
-                                <p>
-                                    <span
-                                        style={{
-                                            fontWeight: "bold",
-                                        }}
-                                    >
-                                        End Time
-                                    </span>
-                                    : {convertTime(course.endTime)}
-                                </p>
-                            </div>
-                        ))}
+                        {courses
+                            .sort(
+                                (c1, c2) =>
+                                    convertTimeNum(c1.startTime) >
+                                    convertTimeNum(c2.endTime),
+                            )
+                            .map((course, k) => (
+                                <div className="status-container" key={k}>
+                                    <h2 className="course-name">
+                                        {course.courseCode}
+                                    </h2>
+                                    <p>
+                                        <span
+                                            style={{
+                                                fontWeight: "bold",
+                                            }}
+                                        >
+                                            Section
+                                        </span>
+                                        : {course.section}
+                                    </p>
+                                    <p>
+                                        <span
+                                            style={{
+                                                fontWeight: "bold",
+                                            }}
+                                        >
+                                            Start Time
+                                        </span>
+                                        : {convertTime(course.startTime)}
+                                    </p>
+                                    <p>
+                                        <span
+                                            style={{
+                                                fontWeight: "bold",
+                                            }}
+                                        >
+                                            End Time
+                                        </span>
+                                        : {convertTime(course.endTime)}
+                                    </p>
+                                </div>
+                            ))}
                     </div>
                 )}
             </section>
