@@ -1,39 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
+import { SnackbarProvider, enqueueSnackbar } from "notistack";
 import Home from "../Home";
 import Header from "../Header";
 import HowItWorks from "../HowItWorks";
-import MeetTeam from "../MeetTeam";
-import Footer from "../Footer";
 import StatusPage from "../StatusPage";
 import axios from "axios";
-import { API_BASE, GET_LOCATIONS } from "../constants";
+import { API_BASE, BASE, GET_LOCATIONS } from "../constants";
 
 const Main = () => {
     const [locations, setLocations] = useState([]);
     const [availableLocations, setAvailableLocations] = useState([]);
     const [selectedLocation, setSelectedLocaction] = useState("");
     const [courses, setCourses] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [nextCourse, setNextCourse] = useState(null);
+    console.log(BASE);
 
     useEffect(() => {
-        console.log(import.meta.env.VITE_API_BASE);
+        setLoading(true);
         axios
             .get(`${API_BASE}${GET_LOCATIONS}`)
             .then((res) => {
                 setLocations(res.data);
                 setSelectedLocaction(res.data[0]);
+                setLoading(false);
             })
             .catch((err) => {
-                console.log(err);
+                setError(err.message);
+                setLoading(false);
             });
     }, []);
 
     useEffect(() => {
         if (error != null) {
-            console.log({ error });
+            enqueueSnackbar(error, {
+                variant: "error",
+            });
             setTimeout(() => {
-                console.log("Clearning error state");
                 setError(null);
             }, 30e3);
         }
@@ -59,20 +64,32 @@ const Main = () => {
         setCourses,
     };
 
+    const loadingState = {
+        loading,
+        setLoading,
+    };
+
     const errorState = {
         error,
         setError,
     };
 
+    const nextCourseState = {
+        nextCourse,
+        setNextCourse,
+    };
+
     return (
-        <BrowserRouter>
+        <HashRouter>
+            <SnackbarProvider />
             <Header />
             <Routes>
                 <Route
-                    path="/"
+                    path={`/`}
                     exact
                     element={
                         <Home
+                            loadingState={loadingState}
                             locationState={locationState}
                             availableLocationsState={availableLocationsState}
                             selectedLocationState={selectedLocationState}
@@ -80,19 +97,21 @@ const Main = () => {
                         />
                     }
                 />
-                <Route path="/how-it-works" element={<HowItWorks />} />
+                <Route path={`/how-it-works`} element={<HowItWorks />} />
                 <Route
-                    path="/status"
+                    path={`/status`}
                     element={
                         <StatusPage
+                            loadingState={loadingState}
                             errorState={errorState}
                             courseState={courseState}
                             location={selectedLocation}
+                            nextCourseState={nextCourseState}
                         />
                     }
                 />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 };
 

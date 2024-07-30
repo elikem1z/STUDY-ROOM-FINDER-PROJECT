@@ -1,0 +1,3 @@
+add dot to index
+change routes adding study-spot-finder
+

@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useLayoutEffect, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { enqueueSnackbar } from "notistack";
 import axios from "axios";
-import {
-    API_BASE,
-    GET_AVAIABLE_LOCATIONS,
-    GET_LOCATIONS,
-    POST_COURSES_RIGHT_NOW,
-} from "../constants";
+import { API_BASE, BASE, GET_AVAIABLE_LOCATIONS } from "../constants";
 import Select from "../Select";
+import Loading from "../Loading";
 
 const Home = ({
+    loadingState,
     locationState,
     availableLocationsState,
     selectedLocationState,
@@ -20,25 +18,35 @@ const Home = ({
         availableLocationsState;
     const { selectedLocation, setSelectedLocaction } = selectedLocationState;
     const { error, setError } = errorState;
+    const { loading, setLoading } = loadingState;
 
     const navigate = useNavigate();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
+        setLoading(true);
         axios
             .get(`${API_BASE}${GET_AVAIABLE_LOCATIONS}`)
             .then((res) => {
                 setAvailableLocations(res.data);
+                setLoading(false);
             })
             .catch((err) => {
                 setError(err.message);
+                setLoading(false);
             });
+    }, []);
+
+    useEffect(() => {
+        setLoading(true);
         setInterval(() => {
             axios
                 .get(`${API_BASE}${GET_AVAIABLE_LOCATIONS}`)
                 .then((res) => {
                     setAvailableLocations(res.data);
+                    setLoading(false);
                 })
                 .catch((err) => {
+                    setLoading(false);
                     setError(err.message);
                 });
         }, 1800000);
@@ -51,10 +59,10 @@ const Home = ({
     const onSearch = (e) => {
         e.preventDefault();
         if (selectedLocation === "") {
-            console.log("Please select a location");
+            enqueueSnackbar("Please select a location", { variant: "error" });
             return;
         }
-        if (error == null) navigate("/status");
+        if (error == null) navigate(`/status`);
     };
 
     return (
@@ -88,17 +96,21 @@ const Home = ({
             </div>
             <div className="available">
                 <h2 className="available-text">Classes Available Now</h2>
-                <div className="available-grid">
-                    {availableLocations.length > 0 ? (
-                        availableLocations.map((location, key) => (
-                            <div key={key} className="location">
-                                <h3>{location}</h3>
-                            </div>
-                        ))
-                    ) : (
-                        <p>No available locations</p>
-                    )}
-                </div>
+                {loading ? (
+                    <Loading />
+                ) : (
+                    <div className="available-grid">
+                        {availableLocations.length > 0 ? (
+                            availableLocations.map((location, key) => (
+                                <div key={key} className="location">
+                                    <h3>{location}</h3>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No available locations</p>
+                        )}
+                    </div>
+                )}
             </div>
         </main>
     );
