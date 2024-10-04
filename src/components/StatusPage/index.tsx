@@ -2,22 +2,11 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { convertTimeNum } from "../utils";
-import {
-    API_BASE,
-    POST_COURSES_RIGHT_NOW,
-    POST_GET_COURSES_TODAY,
-    POST_GET_COURSES_WITHIN,
-} from "../constants";
+import { API_BASE, POST_COURSES_RIGHT_NOW, POST_GET_COURSES_TODAY, POST_GET_COURSES_WITHIN } from "../constants";
 import Loading from "../Loading";
 import Course from "../Course";
 
-const StatusPage = ({
-    location,
-    courseState,
-    errorState,
-    loadingState,
-    nextCourseState,
-}) => {
+const StatusPage = ({ location, courseState, errorState, loadingState, nextCourseState }) => {
     const nav = useNavigate();
     const { loading, setLoading } = loadingState;
     const { courses, setCourses } = courseState;
@@ -67,10 +56,7 @@ const StatusPage = ({
     };
 
     const resolveNextCourse = (data) => {
-        console.log({ data });
-        const courses = data.filter(
-            (c) => convertTimeNum(c.startTime) > new Date().getTime(),
-        );
+        const courses = data.filter((c) => convertTimeNum(c.startTime) > new Date().getTime());
         setNextCourse(courses[0]);
     };
 
@@ -140,30 +126,14 @@ const StatusPage = ({
                     <h1 className="location-name">{location}</h1>
                 </div>
                 <div className="state-buttons">
-                    <button
-                        disabled={buttonState}
-                        onClick={(e) => setButtonState(true)}
-                        className="state-button"
-                    >
+                    <button disabled={buttonState} onClick={(e) => setButtonState(true)} className="state-button">
                         Right Now
                     </button>
-                    <button
-                        disabled={!buttonState}
-                        onClick={(e) => setButtonState(false)}
-                        className="state-button"
-                    >
+                    <button disabled={!buttonState} onClick={(e) => setButtonState(false)} className="state-button">
                         Today
                     </button>
                 </div>
-                <h2
-                    className={
-                        loading
-                            ? "loading"
-                            : available
-                              ? "indicator"
-                              : "status-indicator"
-                    }
-                >
+                <h2 className={loading ? "loading" : available ? "indicator" : "status-indicator"}>
                     {loading
                         ? "Loading..."
                         : available
@@ -177,11 +147,7 @@ const StatusPage = ({
                 ) : (
                     <div className="classes-display">
                         {courses
-                            .sort(
-                                (c1, c2) =>
-                                    convertTimeNum(c1.startTime) -
-                                    convertTimeNum(c2.endTime),
-                            )
+                            .sort((c1, c2) => convertTimeNum(c1.startTime) - convertTimeNum(c2.endTime))
                             .map((course, k) => (
                                 <Course course={course} k={k} />
                             ))}

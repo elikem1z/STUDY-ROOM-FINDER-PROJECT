@@ -16,7 +16,6 @@ const Main = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [nextCourse, setNextCourse] = useState(null);
-    console.log(BASE);
 
     useEffect(() => {
         setLoading(true);
