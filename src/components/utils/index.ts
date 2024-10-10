@@ -1,4 +1,4 @@
-export const convertTimeNum = (time) => {
+export const convertTimeNum = (time: number) => {
     return new Date(new Date().toISOString().split("T")[0] + "T" + time).getTime();
 };
 
