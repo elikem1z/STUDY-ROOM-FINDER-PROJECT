@@ -1,10 +1,10 @@
-import React, { useLayoutEffect, useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { enqueueSnackbar } from "notistack";
 import axios from "axios";
-import { API_BASE, BASE, GET_AVAIABLE_LOCATIONS } from "../constants";
-import Select from "../Select";
-import Loading from "../Loading";
+import { API_BASE, BASE, GET_AVAIABLE_LOCATIONS } from "../constants/index.ts";
+import Select from "../Select/index.tsx";
+import Loading from "../Loading/index.tsx";
 
 const Home = ({
     loadingState,
@@ -14,8 +14,7 @@ const Home = ({
     errorState,
 }) => {
     const { locations, setLocations } = locationState;
-    const { availableLocations, setAvailableLocations } =
-        availableLocationsState;
+    const { availableLocations, setAvailableLocations } = availableLocationsState;
     const { selectedLocation, setSelectedLocaction } = selectedLocationState;
     const { error, setError } = errorState;
     const { loading, setLoading } = loadingState;
@@ -70,11 +69,9 @@ const Home = ({
             <section className="intro">
                 <h1>Welcome to Ashesi Classroom Finder</h1>
                 <p>
-                    Welcome to your go-to resource for finding the perfect study
-                    spot on campus. Say goodbye to wandering around in search of
-                    an empty classroom. Now, you can easily see real-time
-                    availability of classrooms, ensuring you find a peaceful
-                    place to focus, study, and excel.
+                    Welcome to your go-to resource for finding the perfect study spot on campus. Say goodbye to
+                    wandering around in search of an empty classroom. Now, you can easily see real-time availability of
+                    classrooms, ensuring you find a peaceful place to focus, study, and excel.
                 </p>
                 <p className="disclaimer">
                     DISCLAIMER: Some locations maybe booked beforehand
@@ -86,29 +83,23 @@ const Home = ({
                     value={selectedLocation}
                     onChange={onSelectChange}
                 />
-                <button
-                    onClick={onSearch}
-                    type="submit"
-                    className="search-button"
-                >
+                <button onClick={onSearch} type="submit" className="search-button">
                     Search
                 </button>
             </div>
             <div className="available">
                 <h2 className="available-text">Classes Available Now</h2>
-                {loading ? (
-                    <Loading />
-                ) : (
+                {loading ? <Loading /> : (
                     <div className="available-grid">
-                        {availableLocations.length > 0 ? (
-                            availableLocations.map((location, key) => (
-                                <div key={key} className="location">
-                                    <h3>{location}</h3>
-                                </div>
-                            ))
-                        ) : (
-                            <p>No available locations</p>
-                        )}
+                        {availableLocations.length > 0
+                            ? (
+                                availableLocations.map((location, key) => (
+                                    <div key={key} className="location">
+                                        <h3>{location}</h3>
+                                    </div>
+                                ))
+                            )
+                            : <p>No available locations</p>}
                     </div>
                 )}
             </div>

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
-import { SnackbarProvider, enqueueSnackbar } from "notistack";
-import Home from "../Home";
-import Header from "../Header";
-import HowItWorks from "../HowItWorks";
-import StatusPage from "../StatusPage";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import { enqueueSnackbar, SnackbarProvider } from "notistack";
+import Home from "../Home/index.tsx";
+import Header from "../Header/index.tsx";
+import HowItWorks from "../HowItWorks/index.tsx";
+import StatusPage from "../StatusPage/index.tsx";
 import axios from "axios";
-import { API_BASE, BASE, GET_LOCATIONS } from "../constants";
+import { API_BASE, BASE, GET_LOCATIONS } from "../constants/index.ts";
 
 const Main = () => {
     const [locations, setLocations] = useState([]);

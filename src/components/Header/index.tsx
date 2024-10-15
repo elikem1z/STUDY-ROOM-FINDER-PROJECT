@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BASE } from "../constants";
+import { BASE } from "../constants/index.ts";
 
 const Header = () => {
     return (

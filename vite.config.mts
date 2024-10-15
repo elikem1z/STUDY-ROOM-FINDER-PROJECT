@@ -1,5 +1,6 @@
 /** @type {import('vite').UserConfig} */
 import vsharp from "vite-plugin-vsharp";
+import react from "@vitejs/plugin-react-swc";
 
 export default {
     base: "",
@@ -9,5 +10,6 @@ export default {
                 quality: 20,
             },
         }),
+        react(),
     ],
 };

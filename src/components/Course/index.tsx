@@ -1,5 +1,5 @@
 import React from "react";
-import { convertTime } from "../utils";
+import { convertTime } from "../utils/index.ts";
 
 const Course = ({ course, k = 0 }) => {
     return (
