@@ -3,7 +3,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: all 0.5s ease; /* Add a global transition for all properties */
+}
+
+:root {
+    --back: 0, 0, 0
+
 }
 
 body {
@@ -13,6 +17,9 @@ body {
     overflow-x: hidden;
     height: 100vh;
 }
+
+/* body > * { */
+/* } */
 
 .logo {
     font-size: 1.5rem;
@@ -173,8 +180,8 @@ main {
 }
 
 .search-container > select {
-    margin-right: 15px;
-    max-width: 60%;
+    width: 100%;
+    text-align: center;
     font-size: 16px;
     height: 30%;
 }

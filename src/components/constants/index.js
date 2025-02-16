@@ -14,5 +14,6 @@ export const POST_COURSES_RIGHT_NOW = `${TIMETABLE_ROUTE}/courses-right-now`;
 export const GET_AVAIABLE_LOCATIONS = `${TIMETABLE_ROUTE}/available-right-now`;
 export const POST_GET_COURSES_TODAY = `${TIMETABLE_ROUTE}/courses-today`;
 export const POST_GET_COURSES_WITHIN = `${TIMETABLE_ROUTE}/courses-within`;
+export const GET_AVAIBLE_AT = `${TIMETABLE_ROUTE}/available-at`;
 
 export { API_BASE, BASE };

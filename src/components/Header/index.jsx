@@ -7,10 +7,14 @@ const Header = () => {
         <div>
             <header>
                 <nav>
-                    <div className="logo">Study Spot Finder</div>
+                    <div className="logo">StudyHub</div>
                     <ul className="nav-links">
                         <li>
                             <Link to={`/`}>Home</Link>
+                        </li>
+                        
+                        <li>
+                            <Link to={`/search`}>Search Spaces</Link>
                         </li>
                         <li>
                             <Link to={`/how-it-works`}>How it works</Link>

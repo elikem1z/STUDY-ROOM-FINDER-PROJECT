@@ -1,8 +1,8 @@
 import React from "react";
 
-const Select = ({ options, value, onChange }) => {
+const Select = ({ options, value, onChange, className = "" }) => {
     return (
-        <select value={value} onChange={onChange}>
+        <select className={className} value={value} onChange={onChange}>
             {options.map((option) => (
                 <option key={option} value={option}>
                     {option}

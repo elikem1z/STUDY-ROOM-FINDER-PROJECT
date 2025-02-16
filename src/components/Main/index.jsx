@@ -5,6 +5,7 @@ import Home from "../Home";
 import Header from "../Header";
 import HowItWorks from "../HowItWorks";
 import StatusPage from "../StatusPage";
+import Search from "../Search/Search";
 import axios from "axios";
 import { API_BASE, BASE, GET_LOCATIONS } from "../constants";
 
@@ -98,6 +99,7 @@ const Main = () => {
                     }
                 />
                 <Route path={`/how-it-works`} element={<HowItWorks />} />
+                <Route path={`/search`} element={<Search />} />
                 <Route
                     path={`/status`}
                     element={
