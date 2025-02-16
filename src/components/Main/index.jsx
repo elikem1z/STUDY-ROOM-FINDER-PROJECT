@@ -8,6 +8,7 @@ import StatusPage from "../StatusPage";
 import Search from "../Search/Search";
 import axios from "axios";
 import { API_BASE, BASE, GET_LOCATIONS } from "../constants";
+import FreeTime from "../FreeTime";
 
 const Main = () => {
     const [locations, setLocations] = useState([]);
@@ -100,6 +101,7 @@ const Main = () => {
                 />
                 <Route path={`/how-it-works`} element={<HowItWorks />} />
                 <Route path={`/search`} element={<Search />} />
+                <Route path={`/free-time`} element={<FreeTime />} />
                 <Route
                     path={`/status`}
                     element={

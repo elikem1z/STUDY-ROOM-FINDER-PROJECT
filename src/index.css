@@ -1,10 +1,4 @@
-/* Basic Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+@import "tailwindcss";
 :root {
     --back: 0, 0, 0
 
@@ -268,7 +262,9 @@ main {
 }
 
 .home,
-.status-page {
+.status-page,
+.free-time-main
+{
     background: url("../assets/images/Ashesi's_Archer_Cornfield_Courtyard.jpg")
         no-repeat center center fixed;
     background-size: cover;

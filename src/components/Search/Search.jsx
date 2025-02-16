@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { useSnackbar } from "notistack";
+import { enqueueSnackbar } from "notistack";
 import "./Search.css";
 import { convertTime, convertTimeNum } from "../utils";
 import { API_BASE, GET_AVAIBLE_AT } from "../constants";
@@ -16,7 +16,6 @@ const Search = () => {
     );
     const [availableSpaces, setAvailableSpaces] = useState([]);
     const [loading, setLoading] = useState(false);
-    const { enqueueSnackbar } = useSnackbar();
 
     const handleTimeChange = (e) => {
         setSelectedTime(e.target.value);

@@ -1,0 +1,233 @@
+/* free-time Component Styles - Scoped to avoid affecting other components */
+.free-time-page-container {
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+              url('/assets/images/Ashesi\'s_Archer_Cornfield_Courtyard.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 5rem 2rem;
+  color: rgb(179, 167, 167);
+}
+
+.free-time-page-container .free-time-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.free-time-page-container .free-time-header h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.free-time-page-container .free-time-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--back), 0.3);
+  max-width: 90%;
+  min-width: 70%;
+  margin: 0 auto 3rem;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.free-time-page-container .time-input-container {
+  margin-bottom: 1.5rem;
+}
+
+.free-time-page-container .time-input-container label {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+.free-time-page-container .time-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.free-time-page-container .time-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  outline: none;
+}
+
+.free-time-page-container .free-time-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.free-time-page-container .free-time-button:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+.free-time-page-container .free-time-button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.free-time-page-container .results-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(var(--back), 0.4);
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.free-time-page-container .space-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.free-time-page-container .space-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(var(--back), 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.free-time-page-container .space-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.free-time-page-container .space-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.free-time-page-container .space-name {
+  font-size: 1.5rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.free-time-page-container .space-capacity {
+  color: #4b5563;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.free-time-page-container .feature-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.free-time-page-container .feature-tag {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  padding: 0.4rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.free-time-page-container .book-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.free-time-page-container .book-button:hover {
+  background-color: #059669;
+}
+
+.free-time-page-container .no-results {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .free-time-page-container {
+    padding: 2rem 1rem;
+  }
+
+  .free-time-page-container .free-time-header h1 {
+    font-size: 2rem;
+  }
+
+  .free-time-page-container .free-time-form {
+    margin: 0 1rem 2rem;
+  }
+
+  .free-time-page-container .space-grid {
+/* free-time Component Styles */
+
+.free-time-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.time-selector {
+  margin-bottom: 2rem;
+}
+
+.space-card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.space-card:hover {
+  transform: translateY(-4px);
+}
+
+.feature-tag {
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+  }}
