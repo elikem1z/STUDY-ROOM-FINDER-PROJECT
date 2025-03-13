@@ -2,7 +2,7 @@
 .home {
     min-height: 100vh;
     background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-                url('/assets/images/Ashesi\'s_Archer_Cornfield_Courtyard.jpg');
+                url('/Ashesi\'s_Archer_Cornfield_Courtyard.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
