@@ -5,7 +5,7 @@ import axios from "axios";
 import { API_BASE, DAYS, GET_COMMON_FREE_TIME, GET_COURSE_SECTIONS } from "../constants";
 import { X, Search } from "lucide-react";
 import Loading from "../Loading";
-import { useSnackbar, enqueueSnackbar } from "notistack";
+import { enqueueSnackbar } from "notistack";
 import { convertTime } from "../utils";
 
 // Memoized child components
@@ -143,12 +143,12 @@ const FreeTimeResults = memo(({ loading, freeTimes }) => {
 
     return (
         <motion.div
-            className="results-container"
+            className="space-y-5 results-container"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
         >
-            {freeTimes.map((timeSlot, index) => (
+            {freeTimes.map((timeSlot) => (
                 <FreeTimeResultCard key={`${timeSlot.startTime}-${timeSlot.endTime}`} {...timeSlot} />
             ))}
         </motion.div>
@@ -367,9 +367,12 @@ const FreeTime = () => {
 
     useEffect(() => {
         if (state.error) {
-            if (state.error.code && state.error.code !== "ERR_CANCELED") {
+            if (!state.error.code) {
+                enqueueSnackbar(state.error, { variant: "error" });
+            } else if (state.error.code !== "ERR_CANCELED") {
                 enqueueSnackbar(state.error, { variant: "error" });
             }
+
             setState((prev) => ({ ...prev, error: "" }));
         }
     }, [state.error]);
